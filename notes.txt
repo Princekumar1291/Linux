@@ -1,0 +1,369 @@
+https://chatgpt.com/c/68125e19-2ed0-800c-a1be-0293783ba624 
+
+
+***Linux for DevOps***
+
+
+what is /bin folder
+The /bin folder in Linux stands for "binary" and contains essential command-line binaries (executable programs) that are needed for the system to boot and run in single-user mode.
+Key points:
+It holds essential user commands, like:
+ls (list directory contents)
+cp (copy files)
+mv (move/rename files)
+rm (remove files)
+bash (Bourne Again Shell)
+These commands are available to all users, including during system recovery or when no other filesystems are mounted.
+
+
+
+
+
+what is /sbin folder
+The /sbin folder stands for "system binary" and contains essential system administration commands — mostly used by the root (superuser) for system maintenance and recovery.
+Key points:
+It includes commands like:
+ifconfig (configure network interfaces)
+reboot (restart the system)
+fsck (file system check)
+iptables (firewall rules)
+These are not typically used by regular users.
+Like /bin, it's critical during booting and single-user mode.
+
+
+
+
+
+what is /dev folder
+The /dev folder in Linux stands for "device" and contains device files that represent hardware and virtual devices attached to the system.
+Key points:
+Devices are treated like files in Linux — this is called "everything is a file" philosophy.
+Common entries:
+/dev/sda → first hard disk
+/dev/tty → terminal devices
+/dev/null → data sink (discard everything written to it)
+/dev/zero → provides unlimited null bytes (0s)
+/dev/random → provides random numbers
+These files are mostly created dynamically by the udev device manager during boot or when devices are connected.
+
+
+
+
+
+
+what is /var folder
+The /var directory in Linux stands for "variable" and contains files that change frequently while the system is running.
+Key contents:
+/var/log/ → log files (e.g., system logs, app logs)
+/var/mail/ → user mailbox files
+/var/spool/ → queues for tasks like printing or cron jobs
+/var/tmp/ → temporary files preserved between reboots
+/var/cache/ → cached data for apps to speed things up
+Think of /var as the writable counterpart to the mostly static /etc or /bin.
+
+
+
+
+
+
+
+what is /mnt folder
+The /mnt directory in Linux stands for "mount" and is used as a temporary mount point for mounting external storage devices like USB drives, hard disks, or network shares.
+Key points:
+You can manually mount a device to /mnt, like:
+sudo mount /dev/sdb1 /mnt
+It's often used by system administrators for manual, short-term mounts.
+For permanent mounts, custom directories under /mnt or /media are often used.
+
+
+
+
+
+what is /media folder
+The /media directory in Linux is used for automatically mounting external media like USB drives, CDs, DVDs, or SD cards, typically when a user plugs them in.
+Key points:
+Modern Linux systems (like Ubuntu) auto-mount devices to /media/<username> :Example: /media/prince/MyUSB
+Unlike /mnt (used for manual mounts), /media is used for auto-mounted removable devices handled by the desktop environment or udisks.
+
+
+
+
+
+
+what is /usr folder
+The /usr directory in Linux stands for "Unix System Resources" and contains user-related programs and data — not user files, but system-wide read-only software and libraries for normal (non-boot-critical) operations.
+Key contents:
+/usr/bin/ → non-essential user commands (e.g., gcc, python)
+/usr/sbin/ → non-essential system admin commands (e.g., apache2)
+/usr/lib/ → libraries for binaries in /usr/bin and /usr/sbin
+/usr/share/ → architecture-independent files (e.g., docs, icons)
+/usr/local/ → for software installed manually by the user
+💡 Note: Unlike /bin and /sbin, /usr/bin and /usr/sbin are not needed during early boot.
+
+
+
+
+
+
+
+what is /etc folder
+The /etc directory in Linux contains system-wide configuration files and shell scripts used to configure the system and its applications.
+Key points:
+All files are usually text-based config files.
+Examples:
+/etc/passwd → user account info
+/etc/fstab → file system mount config
+/etc/hostname → system hostname
+/etc/ssh/sshd_config → SSH server settings
+Only root or sudo users typically modify /etc.
+
+
+
+
+
+
+
+
+
+
+
+what is /boot folder
+The /boot directory in Linux contains all the files needed to boot the system, including the Linux kernel, initial RAM disk, and bootloader configuration files.
+Key contents:
+/boot/vmlinuz-* → compressed Linux kernel
+/boot/initrd.img-* → initial RAM disk (used during boot to load drivers before root filesystem is available)
+/boot/grub/ → GRUB bootloader configuration files
+/boot/config-* → kernel configuration settings
+This folder is usually on the root partition, but on some systems (like UEFI setups), it may be a separate partition.
+
+
+
+
+
+
+
+what is /opt folder
+The /opt directory in Linux stands for "optional" and is used to install third-party software packages that are not managed by the system's package manager.
+Key points:
+Software installed here usually lives in its own subdirectory, e.g.:
+/opt/google/ → Google Chrome
+/opt/vscode/ → Visual Studio Code
+Good place for manually downloaded apps or proprietary software.
+Keeps custom or vendor software separate from system files.
+💡 Tip: You often need sudo to install to or modify anything in /opt.
+
+
+
+
+
+
+what is /home folder
+The /home directory in Linux contains personal directories for all regular (non-root) users, where each user can store their own files, settings, and data.
+Key points:
+Example: For a user named prince, their home directory is /home/prince
+Inside /home/prince, you'll find:
+Documents, Downloads, Pictures, etc.
+Hidden config files like .bashrc, .gitconfig
+Each user has full control over their own home directory.
+💡 The superuser (root) has a separate home: /root
+
+
+
+
+what is /tmp folder
+/tmp in Linux:
+The /tmp directory is used for temporary files created by applications and the system. These files are:
+Short-lived — can be deleted at reboot
+Accessible to all users (with some permissions restrictions)
+Often used for:
+Temporary download files
+Sockets and pipes
+Lock files
+
+
+
+
+
+for create single directories
+mkdir folder_name 
+ex-> mkdir DevOps
+
+to deleted single directory
+rm -r folder_name or rmdir folder_name
+
+to create multiple directories
+mkdir folder_name1 folder_name2 folder_name3 
+ex-> mkdir DevOps1 DevOps2 DevOps3
+
+to deleted multiple directories
+rm -r folder_name1 folder_name2 folder_name3 or rmdir folder_name1 folder_name2 folder_name3
+
+To create a folder inside another folder
+mkdir folder_name1/folder_name2/folder_name3
+ex-> mkdir DevOps1/DevOps2/DevOps3  (If parent does not exist, this will give an error)
+mkdir -p parent/child (parent will be created if does not exist)
+
+to create numbers of folders
+mkdir prince{1..10}
+
+to deleted numbers of folders
+rm -r prince{1..10}
+
+
+Create single file with touch command
+touch file_name
+ex-> touch DevOps.txt
+
+to create multiple files
+touch file_name1 file_name2 file_name3
+ex-> touch DevOps1 DevOps2 DevOps3
+
+to deleted single file
+rm file_name
+
+to deleted multiple files
+rm DevOps1 DevOps2 DevOps3
+
+pwd -> Print Working Directory
+
+to see the data in a file
+cat file_name
+
+to write the data in file
+cat > file_name
+Then type your content, press Enter after each line, and press Ctrl + D to save and exit.
+or
+nano file.txt
+This opens a simple text editor.
+Type your content.
+Press Ctrl + O to save, then Enter.
+Press Ctrl + X to exit.
+or
+echo "Hello World" > file.txt  (if file does not exist, it will be created)
+
+to append the data in file
+echo "your text here" >> filename.txt
+or 
+cat >> notes.txt
+Now type your lines and press Ctrl + D to finish.
+or
+nano filename.txt
+Move the cursor to the end of the file using the arrow keys.
+Type the text you want to append.
+Press Ctrl + O to save the changes.
+Press Enter to confirm the file name.
+Press Ctrl + X to exit.
+or
+vim filename.txt
+Press G to go to the end of the file.
+Press i to start inserting text.
+Type the content you want to append.
+Press Esc to exit insert mode.
+Type :wq and press Enter to save and quit.
+
+
+
+
+
+
+✅ Print top n lines:
+head -n 5 filename.txt
+
+✅ Print bottom n lines:
+tail -n 5 filename.txt
+
+
+to get the upcoming changes in a file
+tail -f filename.txt
+
+
+The less and more commands in Linux are used to view large text files page by page in the terminal.
+
+less – modern and more powerful
+less filename.txt
+Scroll down with: Down Arrow, Enter, or Space
+Scroll up with: Up Arrow or b
+Search: Press /, type keyword, then Enter
+Quit: Press q
+
+more – older and less powerful
+more filename.txt
+Scroll down: Space or Enter
+No scroll up (older limitation)
+Quit: Press q
+
+
+Copy a file from one location to another
+cp source_file destination_file
+ex-> cp prince/file.txt prince2
+
+copy recursively a folder from one location to another
+cp -r source_folder destination_folder
+ex-> cp -r prince prince2
+
+
+to move a file from one location to another
+mv source_file destination_file
+ex-> mv prince/file.txt prince2
+
+to move a folder from one location to another
+mv source_folder destination_folder
+ex-> mv prince prince2
+
+move recursively a folder from one location to another
+mv -r source_folder destination_folder
+ex-> mv -r prince prince2
+
+to count the number of lines, words, and characters in a file
+wc filename.txt
+
+to count the number of lines in a file
+wc -l filename.txt
+
+to count the number of words in a file
+wc -w filename.txt
+
+to count the number of characters in a file
+wc -c filename.txt
+
+
+
+
+🔗 Hard Link
+✅ Definition:
+A hard link is an additional name for an existing file. Both the original and the hard link point to the same inode (i.e., same data on disk).
+ln /home/ubantu/devops/cloud/dev.txt hardLinkFile
+Shares the same data/inode.
+If the original file is deleted, the hard link still works.
+Can only be created for files, not directories.
+Must be on the same filesystem.
+
+
+🔗 Soft Link (Symbolic Link)
+✅ Definition:
+A soft link (or symlink) is a shortcut or reference to another file path.
+ln -s original.txt symlink.txt
+ln -s /home/ubantu/devops/cloud/dev.txt softLinkFile
+Stores the path to the target file, not the data.
+Breaks if the original file is deleted or moved.
+Can link to files or directories.
+Works across filesystems.
+
+
+🔗 Cut
+✅ Definition:
+Cut and display bytes 1 to 4 from each line of file.txt.
+cut -b 1-3 filename.txt
+
+
+🔗 tee
+✅ Definition:
+The tee command in Linux is used to read from standard input and write to both a file and the terminal at the same time.
+echo "Hello Prince" | tee file.txt
+✅ To append instead of overwrite:
+echo "Hello Prince" | tee -a file.txt
+
+🔗 Sort
+✅ Definition:
+The sort command in Linux is used to sort lines of text files.
+sort filename.txt
