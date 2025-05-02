@@ -3,6 +3,8 @@ https://chatgpt.com/c/68125e19-2ed0-800c-a1be-0293783ba624
 
 ***Linux for DevOps***
 
+apt update
+apt upgrade
 
 what is /bin folder
 The /bin folder in Linux stands for "binary" and contains essential command-line binaries (executable programs) that are needed for the system to boot and run in single-user mode.
@@ -367,3 +369,251 @@ echo "Hello Prince" | tee -a file.txt
 ✅ Definition:
 The sort command in Linux is used to sort lines of text files.
 sort filename.txt
+
+
+🔗 diff
+✅ Definition:
+The diff command in Linux is used to compare the differences between two files.
+diff file1.txt file2.txt
+
+
+
+🔗 ssh
+✅ Definition:The ssh (Secure Shell) command is used to securely connect to a remote Linux machine/server over a network.
+ssh username@hostname
+username = your user account on the remote system
+hostname = IP address or domain name of the remote system
+then inter password
+To disconnect from an SSH session, simply type: exit
+
+
+🔗 df
+✅ Definition:
+The df command in Linux is used to display disk usage information.
+df
+df -h
+
+🔗 du
+The du (disk usage) command in Linux is used to check how much space files and directories are using.
+du .  or du foldername
+du -h .  or du -h foldername
+
+
+🔗 ps
+✅ Definition: The ps command in Linux is used to display currently running processes on the system.
+ps 
+🔧 Common Options:
+Option	Description
+-e or -A	Show all processes
+-f	Full format (with PPID, UID, etc.)
+-u user	Show processes for a specific user
+-x	Show processes not attached to a terminal
+-aux	Legacy format to show all running processes
+
+
+
+🔗 top
+The top command in Linux is used to monitor real-time system processes, showing CPU and memory usage dynamically.
+top
+✅ What top Shows:
+PID (Process ID)
+USER (Owner of the process)
+%CPU (CPU usage)
+%MEM (Memory usage)
+COMMAND (Name of the process)
+
+
+🔗 fuser
+ Show which processes are using a file, port, or filesystem
+ 🧪 Example 1: Who is using a file?
+fuser filename.txt
+🧪 Example 2: Who is using port 80?
+fuser -n tcp 80
+
+
+
+🔗 kill:
+✅ Definition: Terminate a process by PID
+kill PID  (basic kill)
+kill -9 PID  (force kill)
+
+
+
+🔗 free
+The free command in Linux is used to display the amount of free and used memory in the system, including RAM and swap space.
+free
+🔧 Common Options:
+Option	Description
+-h Display memory usage in human-readable format
+-m	Display memory usage in megabytes
+-k	Display memory usage in kilobytes
+
+
+🔗 nohup
+✅ Definition:to store processes in the file nohup.out
+nohup command
+
+
+
+
+🔗 vmstat
+The vmstat (Virtual Memory Statistics) command in Linux provides information about processes, memory, paging, block IO, traps, and CPU activity.
+vmstat
+vmstat -a
+
+
+
+
+
+
+ uname
+ The uname command in Linux is used to display system information such as the kernel name, version, and architecture.
+ uname
+
+ uptime
+ The uptime command in Linux shows how long the system has been running, along with the number of users currently logged in and the system load averages for the past 1, 5, and 15 minutes.
+
+ date
+ The date command in Linux is used to display or set the current date and time.
+
+
+ ✅ who
+Displays a list of users currently logged into the system.
+who
+Output:ubantu   tty1   2025-05-02 09:23
+Breakdown:
+ubantu: Username
+tty1: Terminal
+2025-05-02 09:23: Login time
+
+
+✅ whoami
+Displays your current username (i.e., the user executing the command).
+whoami
+
+
+🔗 which
+ The which command in Linux is used to locate the executable path of a command by searching the directories listed in the user's PATH environment variable.
+
+
+🔗 id
+ The id command in Linux is used to display user ID (UID), group ID (GID), and group memberships for the current user or a specified user.
+
+
+🔗 sudo
+ The sudo command in Linux stands for "superuser do" — it allows a permitted user to run commands as the superuser (root) or another user, as defined in the sudoers configuration.
+ sudo <command>
+ ex-> sudo shutdown , sudo apt update
+🔐 Why Use sudo?
+To perform tasks like installing software, modifying system files, restarting services, etc.
+It logs actions and restricts access to sensitive operations.
+
+
+
+🔗 shutdown
+The shutdown command in Linux is used to turn off, restart, or halt the system safely.
+sudo shutdown 
+📘 Common Examples:
+Command	Description
+sudo shutdown now	Shuts down the system immediately
+sudo shutdown +5	Shuts down the system in 5 minutes
+sudo shutdown -r now	Reboots the system immediately
+sudo shutdown -h now	Halts (powers off) the system now
+sudo shutdown -c	Cancels a scheduled shutdown
+
+
+
+
+🔗 reboot 
+The reboot command in Linux is used to restart the system.
+sudo reboot
+
+passwd
+To change your password in Linux, use the passwd command.
+
+
+
+ctr + r
+to serch a command that we have run before
+
+
+
+🔗 docker (install any applications)
+sudo apt-get install docker.io 
+
+
+🔗 docker (uninstall)
+sudo apt-get remove docker.io
+
+
+for differnet flavour of os
+Ubuntu/Debian -> apt
+Centos/Redhat -> yum
+Fedora -> dnf
+Arch Linux -> pacman
+
+
+
+
+
+
+
+
+
+User and Group management commands
+
+add user
+sudo useradd -m john
+sudo passwd john
+or 
+sudo adduser newusername
+sudo adduser john
+
+
+✅ 1. Switch User (Using su):
+su - username
+su - john
+exit-> logout and go back to root user
+
+To delete a user in Linux, use the userdel command.
+sudo userdel -r username
+sudo userdel -r john
+
+to get the all users
+cat /etc/passwd
+
+get all groups
+cat /etc/group
+
+To add a new group in Linux, use the groupadd command.
+sudo groupadd groupname
+sudo groupadd devteam
+
+To delete a group in Linux, use the groupdel command.
+sudo groupdel groupname
+
+
+To add a user to a group , use the gpasswd command.
+sudo gpasswd -a prince1 devops
+
+to add multiple users in group
+sudo gpasswd -a user1 user2 user3 devops
+
+
+File permissions commands in Linux
+
+🔗 ls -l 
+The command ls -l is used to list files and directories in long (detailed) format in Linux.
+$ ls -l
+-rw-r--r--  1 user  user   1234 May  2 12:00 file.txt
+drwxr-xr-x  2 user  user   4096 May  2 12:01 folder/
+🔍 What the columns mean:
+Field	Description
+- or d	File type (- = file, d = directory)
+rw-r--r--	File permissions
+1	Number of hard links
+user	File owner
+user	Group owner
+1234	File size in bytes
+May 2 12:00	Last modified date/time
+file.txt	File or directory name
