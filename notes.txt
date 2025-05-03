@@ -843,3 +843,38 @@ ex-> nmap google.com
 The route command in Linux is used to display and modify the routing table.
 ex-> route
 
+
+
+🔗 awk 
+The awk command in Linux is used to process text files line by line(structured data).
+ex-> awk '{print $2}' filename.txt
+ex-> awk '{print $1,$2}' app.log
+ex-> awk '{print $1,$2,$3,$5}' app.log
+ex-> awk '/INFO/{print $1,$2,$3,$5}' app.log  >  only_info.log
+ex-> awk '/INFO/ {count++} END {print "the count of INFO is: " count}' app.log
+awk '$2 >= "08:51:01" && $2 <= "08:51:04" {print $2}' app.log
+awk '$2 >= "08:51:01" && $2 <= "08:51:04" {print $2,$3}' a pp.log
+awk 'NR == 5 {print}' app.log
+awk 'NR >=2 && NR <= 10 {print}' app.log
+
+
+🔗 sed
+The sed command in Linux is used to perform stream editor operations on text files(unstructured data).
+sed -n '/INFO/p' app.log
+sed 's/INFO/LOG/g' app.log
+sed -n '/INFO/ {=; p}' app.log
+sed -n '/INFO/ {=; p}' app.log | awk '{print $1}'
+sed -n '/INFO/ {=; p}' app.log | awk '{print $1,$3}'
+sed '1,10 s/INFO/LOG/g' app.log
+
+
+🔗 grep 
+The grep command in Linux is used to search for patterns in text files.
+ex-> grep INFO app.log
+grep -i info app.log
+grep -i -c info app.log
+ps aux | grep ubantu
+ps aux | grep ubantu | awk '{print $2}'
+
+
+Linux Volume management
