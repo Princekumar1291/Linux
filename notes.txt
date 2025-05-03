@@ -830,6 +830,16 @@ sudo iptables -L
 🔗 watch
 The watch command in Linux is used to run a command repeatedly at regular intervals and show the output on the terminal. It's helpful for monitoring changes in system status or output over time.
 ex-> watch uptime
+ex-> watch -n 1 uptime
 
 
+
+🔗 nmap
+The nmap command in Linux is used to perform network scans and vulnerability assessments.
+ex-> nmap google.com
+
+
+🔗 route
+The route command in Linux is used to display and modify the routing table.
+ex-> route
 
