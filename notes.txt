@@ -617,3 +617,219 @@ user	Group owner
 1234	File size in bytes
 May 2 12:00	Last modified date/time
 file.txt	File or directory name
+🧩 Breakdown of rw-r--r--:
+Section	Characters	Meaning
+Owner	rw-	Read + Write (no execute)
+Group	r--	Read only
+Others	r--	Read only
+🎯 Each group of 3:
+r = read
+w = write
+x = execute
+- = permission not granted
+
+permission     value      ascii value
+---              0            000
+--x              1            001 
+-w-              2            010
+-wx              3            011
+r--              4            100
+r-x              5            101
+rw-              6            110
+rwx              7            111
+
+ex-> 
+-rw-r--r--  ->  644
+-rwxr-xr-x  ->  755
+
+
+
+🔗 chmod
+The chmod command in Linux is used to change the permissions of files and directories.
+chmod 755 file1.txt
+
+
+
+🔗 umask
+The umask (user file-creation mode mask) defines default permissions for newly created files and directories in Linux.
+
+
+
+✅ Temporarily (for current session):
+umask 0022
+This changes the default permission mask until you close the terminal.
+
+
+✅ Permanently (for all future sessions):bashrc
+umask 0022
+echo "umask 0022" >> ~/.bashrc
+source ~/.bashrc
+
+
+
+🔗 chown
+The chown command in Linux is used to change the owner and group ownership of files and directories.
+sudo chown username file1.txt
+
+
+🔗 chgrp
+The chgrp command in Linux is used to change the group ownership of files and directories.
+sudo chgrp devops demofile.txt
+
+
+🔗 zip
+The zip command in Linux is used to create a compressed archive of multiple files or directories.
+sudo apt install zip
+🔹Zip a single file: zip myfile.zip file.txt
+🔹Zip multiple files: zip myarchive.zip file1.txt file2.txt image.png
+🔹Zip a directory recursively: zip -r myfolder.zip myfolder
+🔹Zip with password: zip -e secure.zip file.txt
+                    : zip -er secure.zip foldername
+
+📦 To unzip: unzip archive.zip
+
+
+
+🔗 gunzip
+The gunzip command is used to decompress .gz (gzip) files in Linux.
+
+🔗 tar-cvzf
+The tar command is used to create and extract archive files in Linux.
+tar -cvzf cloud.tar.gz cloud
+
+
+🔗 tar -xvzf
+The tar command is used to extract archive files in Linux.
+tar -xvzf cloud.tar.gz
+
+
+🔗 scp
+The scp command in Linux is used to copy files from one server to another.
+scp source_file destination_server:destination_folder
+ex-> scp -i "/Users/prince/Downloads/1inux-for-devops-key.pem" secretFile.txt ubantu@ec2-34-234-234-234.us-west-2.compute.amazonaws.com:/home/ubantu
+
+
+🔗 rsync
+The rsync command in Linux is used to synchronize files between two servers.
+rsync -avz source_server:source_folder destination_server:destination_folder
+
+
+
+
+networking for devops
+
+🔗 ifconfig
+The ifconfig (interface configuration) command is used to view and configure the network interfaces on a Linux system. It displays IP addresses, MAC addresses, and status of each network interface.
+
+🔗 ping
+The ping command tests the reachability of a host on a network by sending ICMP echo request packets and measuring the response time. It helps diagnose network connectivity issues.
+ping google.com
+
+🔗 netstat
+The netstat (network statistics) command displays active network connections, listening ports, routing tables, and network interface statistics. It is useful for monitoring network performance and troubleshooting.
+
+🔗 traceroute
+The traceroute command traces the path that packets take to reach a remote host, showing all the intermediate hops and the time taken at each step. It helps identify where delays or failures are happening in the network.
+traceroute google.com
+
+🔗 tracepath
+The tracepath command is used to trace the path packets take to reach a network host, similar to traceroute, but without needing superuser (root) privileges. It reports each hop along the route and the delay at each hop.
+tracepath google.com
+
+
+🔗 mtr (My Traceroute)
+The mtr command combines the functionality of ping and traceroute into a single real-time network diagnostic tool. It continuously traces the route to a destination and provides dynamic, real-time statistics like packet loss and latency at each hop.
+
+
+🔗 nslookup
+The nslookup (Name Server Lookup) command is used to query Domain Name System (DNS) servers to obtain domain name or IP address mapping, or for any other specific DNS record.
+Key Features:
+Finds the IP address of a domain name.
+Finds the domain name associated with an IP.
+Helps troubleshoot DNS-related issues.
+Example (to find IP of domain):
+nslookup google.com
+
+
+
+🔗 telnet
+The telnet command is a network protocol and command-line tool used to connect to remote machines over TCP/IP. It allows users to test connectivity to specific ports and manually interact with text-based network services.
+
+✅ Uses of telnet:
+Testing if a port is open on a remote server.
+Manually interacting with protocols like HTTP, SMTP, FTP, etc.
+Simple troubleshooting of network and firewall issues.
+📌 Basic Syntax:
+telnet [hostname or IP] [port]
+💡 Example:
+telnet google.com 80
+
+
+🔗 hostname
+The hostname command in Linux is used to display or set the system's hostname — the name that identifies the system on a network.
+
+
+🔗 hostnamectl 
+The hostnamectl command in Linux is used to display or set the system's hostname — the name that identifies the system on a network.
+ex-> sudo hostnamectl set-hostname dev-machine
+
+
+🔗 ip
+In Linux, the ip command is used to view and manipulate networking, routing, devices, and tunnels. It replaces older tools like ifconfig.
+ex-> ip addr 
+
+
+🔗 iwconfig
+The iwconfig command in Linux is used to configure wireless network interfaces.
+ex-> iwconfig
+
+
+🔗 ss
+The ss command in Linux is used to display network statistics and information about network connections.
+ex-> ss
+
+
+🔗 dig
+The dig command in Linux is used to query DNS servers and perform DNS lookups.
+ex-> dig google.com
+
+
+🔗 whois
+The whois command in Linux is used to retrieve information about a domain name or IP address.
+ex-> whois google.com
+
+
+🔗 arp
+The arp command in Linux is used to view and manipulate the ARP (Address Resolution Protocol) cache, which maps IP addresses to MAC (hardware) addresses on a local network.
+ex-> arp
+
+
+🔗 ifplugstatus
+The ifplugstatus command checks the status of a network cable (whether it is plugged in or not) for a given network interface.
+ifplugstatus 
+
+
+🔗 curl
+Use curl for APIs, single file transfers, or scripting uploads/downloads.
+ex-> curl https://dummyjson.com/products 
+in the formated json
+ex-> curl https://dummyjson.com/products | jq 
+
+
+🔗 wget
+Use wget for downloading files and websites.
+ex-> wget https://dummyjson.com/products
+
+
+🔗 iptables
+Used to set up, maintain, and inspect the Linux kernel's packet filtering rules.
+Core tool for configuring firewall rules.
+sudo iptables -L
+
+
+🔗 watch
+The watch command in Linux is used to run a command repeatedly at regular intervals and show the output on the terminal. It's helpful for monitoring changes in system status or output over time.
+ex-> watch uptime
+
+
+
