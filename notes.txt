@@ -877,4 +877,28 @@ ps aux | grep ubantu
 ps aux | grep ubantu | awk '{print $2}'
 
 
-Linux Volume management
+Linux Volume management(AWS EBS)
+after connecting to ec2 instance
+
+🔗 lsblk
+The lsblk command in Linux is used to list block devices and their properties.
+ex-> lsblk
+
+🔗 df
+The df command in Linux is used to display disk usage information.
+ex-> df -h
+
+
+🔗 lvm
+The lvm command in Linux is used to manage logical volume management.
+ex-> lvm
+
+
+pvcreate /dev/xvzf /dev/xvzg /dev/xvzh
+
+vgcreate tws_vg /dev/xvzf /dev/xvzg 
+
+lvcreate -l 10G -n tws_lv tws_vg
+
+
+mount the logical volume
