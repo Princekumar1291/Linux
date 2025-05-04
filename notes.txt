@@ -885,20 +885,71 @@ The lsblk command in Linux is used to list block devices and their properties.
 ex-> lsblk
 
 🔗 df
-The df command in Linux is used to display disk usage information.
+The df command in Linux is used to display disk usage information,mount points, and file systems.
 ex-> df -h
 
+
+step1 -> attach the disk volume to the instance
+step2 -> create a volume group
+step3 -> create a logical volume
 
 🔗 lvm
 The lvm command in Linux is used to manage logical volume management.
 ex-> lvm
 
+🔗 pvs
+The pvs command in Linux is used to display information about physical volumes.
 
-pvcreate /dev/xvzf /dev/xvzg /dev/xvzh
 
+🔗 pvcreate
+The pvcreate command in Linux is used to create physical volumes.
+pvcreate /dev/xvdf /dev/xvdg /dev/xvdh
+
+
+🔗 vgcreate
 vgcreate tws_vg /dev/xvzf /dev/xvzg 
 
-lvcreate -l 10G -n tws_lv tws_vg
+🔗 vgs
+The vgs command in Linux is used to display information about volume groups.
+vgs
 
 
-mount the logical volume
+🔗 lvcreate
+The lvcreate command in Linux is used to create logical volumes.
+lvcreate -L 10G -n tws_lv tws_vg
+
+🔗 pvdisplay
+The pvdisplay command in Linux is used to display information about physical volumes.
+pvdisplay
+
+🔗 lvdisplay
+The lvdisplay command in Linux is used to display information about logical volumes.
+lvdisplay
+
+
+🔗 mkfs
+The mkfs command in Linux is used to create a file system.
+mkfs.ext4 /dev/tws_vg/tws_lv
+
+🔗 mount
+ sudo mount /dev/tws_vg/tws_lv /mnt/tws_lv_mount
+
+🔗 umount
+The umount command in Linux is used to unmount a mounted filesystem.
+ sudo umount /dev/tws_vg/tws_lv
+ 
+
+
+ Full LVM Workflow Recap:
+Physical Volumes (PVs)
+pvcreate /dev/xvdf: Marks disks/partitions as LVM physical volumes.
+pvs/pvdisplay: Shows PV information.
+Volume Group (VG)
+vgcreate tws_vg /dev/xvdf: Combines PVs into a storage pool named "tws_vg".
+vgs: Lists VGs.
+Logical Volume (LV)
+lvcreate -L 10G -n tws_lv tws_vg: Creates a 10GB LV named "tws_lv" from the VG.
+lvdisplay: Shows LV details.
+Filesystem & Mounting
+mkfs.ext4 /dev/tws_vg/tws_lv: Formats the LV with an ext4 filesystem.
+mount /dev/tws_vg/tws_lv /mnt/tws_lv_mount: Makes the storage accessible at /mnt/tws_lv_mount.
